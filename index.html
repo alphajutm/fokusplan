@@ -314,6 +314,21 @@ dialog.sheet::backdrop{background:rgba(0,0,0,.4);-webkit-backdrop-filter:blur(3p
       <textarea id="ics-text" hidden readonly aria-label="ICS-Inhalt" style="margin-top:14px"></textarea>
     </div>
 
+    <div class="sec"><h2>Mac und iPhone</h2><span class="meta" id="sy-status"></span></div>
+    <div class="card pad" id="sy-off">
+      <p class="hint" style="margin-bottom:14px">Synchronisiert Termine und Fortschritt über eine geheime Datei (Gist) in deinem GitHub-Konto. Einmal pro Gerät einrichten.</p>
+      <ol class="hint" style="margin:0 0 16px;padding-left:20px;display:flex;flex-direction:column;gap:6px">
+        <li><a href="https://github.com/settings/tokens/new?description=Fokusplan%20Sync&amp;scopes=gist" target="_blank" rel="noopener">Schlüssel bei GitHub erstellen</a>: Ablauf auf „No expiration“ stellen, nur „gist“ angehakt lassen, unten auf „Generate token“.</li>
+        <li>Den Schlüssel (beginnt mit ghp_) kopieren und hier einfügen.</li>
+      </ol>
+      <div class="fields"><label class="field">Schlüssel<input id="sy-token" type="password" autocomplete="off" placeholder="ghp_…"></label></div>
+      <div class="row" style="margin-top:14px"><button id="sy-connect" type="button" class="btn btn-primary">Verbinden</button></div>
+    </div>
+    <div class="card pad" id="sy-on" hidden>
+      <p class="hint" style="margin-bottom:16px">Verbunden. Änderungen gehen automatisch aufs andere Gerät. Fürs zweite Gerät: Schlüssel hier kopieren und dort einfügen (Mac → iPhone geht über die gemeinsame Zwischenablage).</p>
+      <div class="row"><button id="sy-now" type="button" class="btn btn-primary">Jetzt synchronisieren</button><button id="sy-copy" type="button" class="btn">Schlüssel kopieren</button><button id="sy-off-btn" type="button" class="btn">Trennen</button></div>
+    </div>
+
     <div class="sec"><h2>Daten</h2></div>
     <div class="card pad">
       <p class="hint" style="margin-bottom:16px">Alles ist nur auf diesem Gerät gespeichert. Mit einer Sicherung überträgst du deinen Fortschritt auf ein anderes Gerät. „Laden“ nimmt eine Sicherung oder die Startdaten-Datei mit deinen Terminen.</p>
@@ -424,7 +439,7 @@ const BUF={school:45,work:30,friends:30,social:30,other:15};
 const LOOKBACK_DAYS=3, MAX_PER_DAY=210, PROGRAM_START='2026-10-05'; // Woche 1 Lernplan Feld
 
 // ---------- Zustand (nur auf diesem Gerät) ----------
-const EMPTY={events:[],tasks:[],progress:{},blockDone:{},trackDone:{},step:{en:0,feld:0,ana:0,flex:0},pins:[],log:[],sched:[],missed:[],checkin:null,sessions:[],v:3};
+const EMPTY={events:[],tasks:[],progress:{},blockDone:{},trackDone:{},step:{en:0,feld:0,ana:0,flex:0},pins:[],log:[],sched:[],missed:[],checkin:null,sessions:[],updatedAt:0,v:3};
 const LS='fokusplan-state';
 const clone=o=>JSON.parse(JSON.stringify(o));
 function norm(s){
@@ -435,7 +450,9 @@ function norm(s){
 }
 let state=clone(EMPTY);
 try{const s=localStorage.getItem(LS);if(s)state=norm(JSON.parse(s));}catch(e){}
-function save(){try{localStorage.setItem(LS,JSON.stringify(state));}catch(e){}}
+// saveLocal: nur dieses Gerät (automatische Neuberechnung). save: echte Änderung → auch synchronisieren.
+function saveLocal(){try{localStorage.setItem(LS,JSON.stringify(state));}catch(e){}}
+function save(){state.updatedAt=Date.now();saveLocal();Sync.push();}
 
 // ---------- Zeit-Helfer ----------
 const $=id=>document.getElementById(id);
@@ -467,7 +484,7 @@ function trackStep(id){const t=TRACKS.find(x=>x.id===id);const i=Math.min(state.
 function plan(){
   const now=new Date(),T=now.getTime();
   // abgelaufene Pins entfernen (nicht erledigte landen unter „Verpasst“)
-  const before=state.pins.length;state.pins=state.pins.filter(p=>new Date(p.s).getTime()+p.len*6e4>T);if(state.pins.length!==before)save();
+  const before=state.pins.length;state.pins=state.pins.filter(p=>new Date(p.s).getTime()+p.len*6e4>T);if(state.pins.length!==before)saveLocal();
   // Blöcke, die schon begonnen haben, bleiben an ihrem Platz
   const running=state.sched.filter(x=>!x.pin&&new Date(x.s).getTime()<=T&&new Date(x.e).getTime()>T);
   const hold=state.pins.concat(running);
@@ -565,7 +582,7 @@ function trackMissed(blocks){
   const fut=blocks.filter(b=>!b.done&&!b.running&&b.s.getTime()>T).map(b=>({id:b.id,kind:b.kind,ref:b.ref,week:b.week,title:b.title,url:b.url||'',s:b.s.toISOString(),e:b.e.toISOString(),len:Math.round((b.e-b.s)/6e4),pin:b.pin||null}));
   const next=keep.concat(fut);
   if(state.missed.length>300)state.missed=state.missed.filter(m=>m.status==='open').concat(state.missed.filter(m=>m.status!=='open').slice(-200));
-  if(changed||JSON.stringify(next)!==JSON.stringify(state.sched)){state.sched=next;save();}
+  if(changed||JSON.stringify(next)!==JSON.stringify(state.sched)){state.sched=next;saveLocal();}
 }
 const missedOpen=()=>state.missed.filter(m=>m.status==='open').sort((a,b)=>new Date(a.s)-new Date(b.s));
 const asBlock=m=>({...m,s:new Date(m.s),e:new Date(m.e),missed:true,study:true});
@@ -815,8 +832,8 @@ function maybeRender(){
   const a=document.activeElement;if(a&&/INPUT|TEXTAREA|SELECT/.test(a.tagName))return;
   render();
 }
-setInterval(maybeRender,60000);
-document.addEventListener('visibilitychange',()=>{if(!document.hidden)maybeRender();});
+setInterval(()=>{if(!document.hidden)Sync.pull();maybeRender();},60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden){Sync.pull();maybeRender();}});
 
 // ---------- Events ----------
 let kind='work';
@@ -910,7 +927,78 @@ $('file').addEventListener('change',async e=>{
   }catch(err){toast('Diese Datei passt nicht zu Fokusplan');}
 });
 
+// ---------- Sync Mac ↔ iPhone (GitHub Gist) ----------
+// Neuester Stand gewinnt. Holt beim Öffnen, beim Zurückkehren in die App und jede Minute;
+// schickt jede echte Änderung nach kurzer Pause.
+const Sync=(()=>{
+  const KEY='fokusplan-sync',FILE='fokusplan.json',DESC='Fokusplan Sync (nicht löschen)';
+  let cfg=null,t=null,busy=false,last=null;
+  try{cfg=JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){}
+  const api=(path,opt={})=>fetch('https://api.github.com'+path,{...opt,cache:'no-store',headers:{'Authorization':'Bearer '+cfg.token,'Accept':'application/vnd.github+json','Content-Type':'application/json'}})
+    .then(r=>{if(r.status===401)throw new Error('auth');if(!r.ok)throw new Error('http '+r.status);return r.json();});
+  function status(txt){const el=$('sy-status');if(el)el.textContent=txt;}
+  function ui(){
+    $('sy-off').hidden=!!cfg;$('sy-on').hidden=!cfg;
+    status(cfg?(last?'Synchronisiert '+hm(last):'Verbunden'):'Nicht verbunden');
+  }
+  async function read(){
+    const g=await api('/gists/'+cfg.id);const f=g.files&&g.files[FILE];if(!f)return null;
+    const txt=f.truncated?await fetch(f.raw_url,{cache:'no-store'}).then(r=>r.text()):f.content;
+    return JSON.parse(txt);
+  }
+  async function write(){
+    await api('/gists/'+cfg.id,{method:'PATCH',body:JSON.stringify({files:{[FILE]:{content:JSON.stringify(state)}}})});
+    last=new Date();ui();
+  }
+  function fail(e){
+    if(e&&e.message==='auth'){status('Schlüssel ungültig');toast('Sync: Schlüssel ungültig, bitte neu verbinden');}
+    else status('Offline – wird nachgeholt');
+  }
+  async function pull(){
+    if(!cfg||busy)return;busy=true;
+    try{
+      const remote=await read();
+      if(remote&&(remote.updatedAt||0)>(state.updatedAt||0)){
+        state=norm(remote);saveLocal();last=new Date();ui();
+        if(!focus&&!document.querySelector('dialog[open]'))render();
+      }else if(!remote||(state.updatedAt||0)>(remote.updatedAt||0)){await write();}
+      else{last=new Date();ui();}
+    }catch(e){fail(e);}
+    busy=false;
+  }
+  function push(){
+    if(!cfg)return;clearTimeout(t);
+    t=setTimeout(async()=>{
+      if(busy){push();return;}busy=true;
+      try{
+        // nicht blind überschreiben: ist das andere Gerät neuer, zuerst dessen Stand holen
+        const remote=await read();
+        if(remote&&(remote.updatedAt||0)>(state.updatedAt||0)){state=norm(remote);saveLocal();render();}
+        else await write();
+      }catch(e){fail(e);}
+      busy=false;
+    },1500);
+  }
+  async function connect(token){
+    cfg={token};
+    try{
+      const list=await api('/gists?per_page=100');
+      const g=list.find(x=>x.files&&x.files[FILE]&&x.description===DESC);
+      if(g)cfg.id=g.id;
+      else{const n=await api('/gists',{method:'POST',body:JSON.stringify({description:DESC,public:false,files:{[FILE]:{content:JSON.stringify(state)}}})});cfg.id=n.id;}
+      localStorage.setItem(KEY,JSON.stringify(cfg));ui();await pull();toast('Verbunden');
+    }catch(e){cfg=null;ui();toast(e&&e.message==='auth'?'Schlüssel ungültig':'Verbinden fehlgeschlagen');}
+  }
+  function disconnect(){cfg=null;try{localStorage.removeItem(KEY);}catch(e){}ui();toast('Getrennt. Daten bleiben auf diesem Gerät.');}
+  return{pull,push,connect,disconnect,ui,token:()=>cfg&&cfg.token};
+})();
+$('sy-connect').addEventListener('click',()=>{const v=$('sy-token').value.trim();if(!v){toast('Schlüssel einfügen');return;}$('sy-token').value='';Sync.connect(v);});
+$('sy-now').addEventListener('click',()=>Sync.pull().then(()=>toast('Synchronisiert')));
+$('sy-off-btn').addEventListener('click',()=>Sync.disconnect());
+$('sy-copy').addEventListener('click',()=>{const k=Sync.token();if(!k)return;(navigator.clipboard?navigator.clipboard.writeText(k):Promise.reject()).then(()=>toast('Schlüssel kopiert')).catch(()=>toast('Kopieren nicht möglich'));});
+
 render();
+Sync.ui();Sync.pull();
 
 // ---------- Offline (Service Worker) ----------
 if('serviceWorker' in navigator&&location.protocol!=='file:'){navigator.serviceWorker.register('sw.js').catch(()=>{});}
