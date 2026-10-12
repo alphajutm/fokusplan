@@ -59,8 +59,8 @@ button,input,select,textarea{font:inherit;color:inherit}
 .switch input:checked::after{transform:translateX(20px)}
 
 .tabbar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--nav);-webkit-backdrop-filter:saturate(180%) blur(20px);backdrop-filter:saturate(180%) blur(20px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom,0px)}
-.tabbar .in{max-width:560px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);padding:0 8px}
-.tabbar button{position:relative;background:none;border:0;padding:8px 0 7px;display:flex;flex-direction:column;align-items:center;gap:2px;font:500 11px var(--font);letter-spacing:0;color:var(--faint);cursor:pointer}
+.tabbar .in{max-width:620px;margin:0 auto;display:grid;grid-template-columns:repeat(5,1fr);padding:0 4px}
+.tabbar button{position:relative;background:none;border:0;padding:8px 0 7px;display:flex;flex-direction:column;align-items:center;gap:2px;font:500 10.5px var(--font);letter-spacing:0;color:var(--faint);cursor:pointer}
 .tabbar button[aria-current=page]{color:var(--ink)}
 .tabbar svg{width:25px;height:25px}
 .badge{position:absolute;top:4px;left:calc(50% + 6px);min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--red);color:#fff;font:700 11px/18px var(--font)}
@@ -191,6 +191,56 @@ h3{font-size:19px;letter-spacing:-.02em;font-weight:600}
 .logi:first-child{border-top:0}
 textarea{width:100%;min-height:120px;font:12px ui-monospace,Menlo,monospace;border:0;border-radius:12px;background:var(--fill);color:var(--ink);padding:12px}
 
+/* Kalender */
+.calbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.calbar .ttl{font:700 20px var(--display);letter-spacing:-.02em;flex:1;min-width:140px}
+.seg2{display:grid;grid-template-columns:repeat(2,1fr);background:var(--fill);border-radius:12px;padding:3px;gap:3px}
+.seg2 button{border:0;background:none;border-radius:9px;padding:6px 14px;font:500 14px var(--font);cursor:pointer}
+.seg2 button[aria-pressed=true]{background:var(--seg-on);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.cal{padding:14px 10px 10px}
+.cal-h,.cal-g{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.cal-h span{text-align:center;font-size:12px;font-weight:600;color:var(--faint);padding-bottom:6px}
+.cal-d{appearance:none;-webkit-appearance:none;border:0;background:none;border-radius:14px;padding:6px 0 7px;min-height:56px;display:flex;flex-direction:column;align-items:center;gap:5px;cursor:pointer;font:500 16px var(--font);position:relative}
+.cal-d .n{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-variant-numeric:tabular-nums}
+.cal-d.oth{color:var(--faint);opacity:.55}
+.cal-d.today .n{background:var(--orange);color:#fff;font-weight:700}
+.cal-d.sel{background:var(--fill)}
+.cal-d.sel .n{font-weight:700}
+.cal-d .dots{display:flex;gap:3px;height:7px}
+.cal-d .d{width:6px;height:6px;border-radius:50%;background:var(--c-other);display:block}
+.d.k-school{background:var(--c-school)}.d.k-work{background:var(--c-work)}.d.k-friends{background:var(--c-friends)}.d.k-social{background:var(--c-social)}
+.d.st{background:var(--c-study)}.d.ms{background:var(--red)}.d.dn{background:var(--green)}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--muted);padding:10px 6px 2px}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px;vertical-align:0}
+.it.gone .ti{text-decoration:line-through;color:var(--muted);font-weight:500}
+.it.gone .dot{background:var(--faint)}
+.it.gone .why{font-size:14px;color:var(--muted);margin-top:2px}
+
+/* Chips */
+.chips{display:flex;gap:8px;flex-wrap:wrap}
+.chip{border:0;background:var(--fill);border-radius:980px;padding:7px 13px;font:500 14px var(--font);cursor:pointer}
+.chip:active{background:var(--fill-strong)}
+
+/* Coach */
+.chat{display:flex;flex-direction:column;gap:10px}
+.bub{max-width:90%;padding:12px 16px;border-radius:20px;font-size:16px;line-height:1.42;overflow-wrap:anywhere}
+.bub.u{align-self:flex-end;background:var(--primary);color:var(--on-primary);border-bottom-right-radius:6px}
+.bub.a{align-self:flex-start;background:var(--surface);box-shadow:var(--shadow);border-bottom-left-radius:6px}
+.bub .li{padding-left:1em;text-indent:-1em}.bub .gap{height:8px}
+.bub.typing{color:var(--muted);animation:pulse 1.6s infinite}
+.note{align-self:center;font-size:13px;font-weight:600;color:var(--green-ink);background:var(--green-soft);padding:5px 12px;border-radius:980px;text-align:center}
+.aibar{position:sticky;bottom:calc(68px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:10px;background:var(--bg);padding:10px 0 4px}
+.aibar .line{display:flex;gap:8px}
+.aibar input{flex:1;min-width:0;font:400 17px var(--font);background:var(--surface);border:1px solid var(--line);border-radius:980px;padding:12px 18px;color:var(--ink)}
+.aibar .btn{padding:12px 20px}
+.field select{appearance:none;-webkit-appearance:none}
+
+/* Sperre */
+.lock{position:fixed;inset:0;z-index:100;background:var(--bg);display:grid;place-items:center;padding:24px}
+.lock form{width:min(380px,100%);display:flex;flex-direction:column;gap:16px;text-align:center}
+.lock h1{font-size:34px;margin:0}
+body.locked .wrap,body.locked .topnav,body.locked .tabbar{display:none}
+
 /* Sheets */
 dialog.sheet{border:0;padding:0;background:var(--surface);color:var(--ink);border-radius:24px;width:min(560px,calc(100% - 24px));max-height:calc(100% - 40px);box-shadow:0 24px 80px rgba(0,0,0,.35)}
 dialog.sheet::backdrop{background:rgba(0,0,0,.4);-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}
@@ -205,6 +255,7 @@ dialog.sheet::backdrop{background:rgba(0,0,0,.4);-webkit-backdrop-filter:blur(3p
 .seg{display:grid;grid-template-columns:repeat(4,1fr);background:var(--fill);border-radius:12px;padding:3px;gap:3px}
 .seg button{border:0;background:none;border-radius:9px;padding:8px 0;font:500 14px var(--font);cursor:pointer}
 .seg button[aria-pressed=true]{background:var(--seg-on);font-weight:600;box-shadow:0 1px 3px rgba(0,0,0,.12)}
+.seg3{grid-template-columns:repeat(3,1fr)}
 .err{color:var(--red);font-size:14px;margin:0;min-height:1em}
 
 .toast{position:fixed;left:50%;bottom:calc(90px + env(safe-area-inset-bottom,0px));transform:translate(-50%,16px);opacity:0;background:var(--primary);color:var(--on-primary);padding:12px 22px;border-radius:980px;font-weight:600;font-size:15px;transition:opacity .25s,transform .25s;pointer-events:none;z-index:40;max-width:calc(100% - 32px);text-align:center}
@@ -214,6 +265,7 @@ dialog.sheet::backdrop{background:rgba(0,0,0,.4);-webkit-backdrop-filter:blur(3p
   .it{grid-template-columns:78px 10px minmax(0,1fr) auto;gap:10px}
   .now,.ci{padding:22px;border-radius:24px}
   .switch span{display:none}
+  .cal-d{min-height:52px}
 }
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 </style>
@@ -255,7 +307,8 @@ dialog.sheet::backdrop{background:rgba(0,0,0,.4);-webkit-backdrop-filter:blur(3p
     </div>
 
     <div id="miss-wrap" hidden>
-      <div class="sec"><h2 style="color:var(--red)">Verpasst</h2><span class="meta">Bleibt rot, bis du es nachholst oder verschiebst.</span></div>
+      <div class="sec"><h2 style="color:var(--red)">Verpasst</h2><span class="meta">Bleibt rot, bis du es klärst.</span></div>
+      <div class="row" style="margin-bottom:-4px"><button class="btn btn-red" type="button" data-review>Jetzt klären</button><span class="hint">Erledigt, verschieben oder nicht gemacht, immer mit Grund.</span></div>
       <div class="card" id="miss-list"></div>
     </div>
 
@@ -265,15 +318,49 @@ dialog.sheet::backdrop{background:rgba(0,0,0,.4);-webkit-backdrop-filter:blur(3p
     <div class="card" id="today-list"></div>
   </section>
 
-  <!-- WOCHE -->
-  <section class="view" data-view="woche" hidden>
+  <!-- KALENDER -->
+  <section class="view" data-view="kalender" hidden>
     <header class="hero">
-      <div class="eyebrow">Nächste 7 Tage</div>
-      <h1>Woche.</h1>
-      <p class="lead">Deine Termine und die Lernblöcke, die automatisch in die freie Zeit rutschen.</p>
+      <div class="eyebrow" id="cal-eyebrow">Termine und Lernblöcke</div>
+      <h1>Kalender.</h1>
+      <p class="lead">Alles an einem Ort: was geplant war, was erledigt ist und was du nicht gemacht hast, mit Grund.</p>
     </header>
-    <div class="row"><button class="btn btn-primary" type="button" data-add>Termin eintragen</button></div>
-    <div id="week" class="view"></div>
+    <div class="calbar">
+      <button class="iconbtn" type="button" data-cal-nav="-1" aria-label="Zurück"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <div class="ttl" id="cal-title"></div>
+      <button class="iconbtn" type="button" data-cal-nav="1" aria-label="Weiter"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+    <div class="row" style="justify-content:space-between">
+      <div class="seg2" role="group" aria-label="Ansicht"><button type="button" data-cal-mode="month">Monat</button><button type="button" data-cal-mode="week">Woche</button></div>
+      <div class="row"><button class="btn btn-sm" type="button" data-cal-today>Heute</button><button class="btn btn-sm btn-primary" type="button" data-add>Termin</button></div>
+    </div>
+    <div class="card cal" id="cal-grid"></div>
+    <div id="cal-day-wrap">
+      <div class="sec"><h2 id="cal-day-h"></h2><span class="meta" id="cal-day-m"></span></div>
+      <div class="card" id="cal-day"></div>
+    </div>
+    <div id="cal-week" class="view"></div>
+  </section>
+
+  <!-- COACH -->
+  <section class="view" data-view="coach" hidden>
+    <header class="hero">
+      <div class="eyebrow">KI-Coach</div>
+      <h1>Coach.</h1>
+      <p class="lead">Kennt deinen Plan, deine Gründe und deine Woche. Kann Termine eintragen, Blöcke verschieben und Verpasstes mit dir klären.</p>
+    </header>
+    <div class="card pad" id="ai-setup" hidden>
+      <h3>Noch nicht verbunden</h3>
+      <p class="hint" style="margin:8px 0 16px">Der Coach läuft über Claude. Dafür brauchst du einen eigenen API-Schlüssel von Anthropic. Du richtest ihn einmal unter „Mehr“ ein.</p>
+      <button class="btn btn-primary" type="button" data-goto-ai>KI einrichten</button>
+    </div>
+    <div id="ai-chat" hidden>
+      <div class="chat" id="ai-msgs" aria-live="polite"></div>
+      <form class="aibar" id="ai-form">
+        <div class="chips" id="ai-chips"></div>
+        <div class="line"><input id="ai-in" type="text" placeholder="Frag den Coach …" autocomplete="off" enterkeyhint="send" aria-label="Nachricht an den Coach"><button class="btn btn-primary" type="submit" id="ai-send">Senden</button></div>
+      </form>
+    </div>
   </section>
 
   <!-- LERNPLAN -->
@@ -304,7 +391,7 @@ dialog.sheet::backdrop{background:rgba(0,0,0,.4);-webkit-backdrop-filter:blur(3p
     <div class="sec"><h2>Eincheck-Zeiten</h2></div>
     <div class="card" id="sessions"></div>
 
-    <div class="sec"><h2>Verschoben</h2><span class="meta" id="log-sum"></span></div>
+    <div class="sec"><h2>Verschoben und nicht gemacht</h2><span class="meta" id="log-sum"></span></div>
     <div class="card" id="log"></div>
 
     <div class="sec"><h2>Apple Kalender</h2></div>
@@ -314,19 +401,46 @@ dialog.sheet::backdrop{background:rgba(0,0,0,.4);-webkit-backdrop-filter:blur(3p
       <textarea id="ics-text" hidden readonly aria-label="ICS-Inhalt" style="margin-top:14px"></textarea>
     </div>
 
-    <div class="sec"><h2>Mac und iPhone</h2><span class="meta" id="sy-status"></span></div>
+    <div class="sec"><h2>Passwort</h2><span class="meta" id="pw-status"></span></div>
+    <div class="card pad">
+      <p class="hint" style="margin-bottom:16px">Sperrt die App beim Öffnen und verschlüsselt alle Daten (AES-256) auf diesem Gerät und in der Cloud. Das Passwort kann nicht zurückgesetzt werden: wer es vergisst, verliert die Cloud-Daten.</p>
+      <div class="row"><button id="pw-set" type="button" class="btn btn-primary">Passwort festlegen</button><button id="pw-lock" type="button" class="btn" hidden>Jetzt sperren</button></div>
+    </div>
+
+    <div class="sec"><h2>Auf allen Geräten</h2><span class="meta" id="sy-status"></span></div>
     <div class="card pad" id="sy-off">
-      <p class="hint" style="margin-bottom:14px">Synchronisiert Termine und Fortschritt über eine geheime Datei (Gist) in deinem GitHub-Konto. Einmal pro Gerät einrichten.</p>
+      <p class="hint" style="margin-bottom:14px">Speichert deine verschlüsselten Daten in einer geheimen Datei (Gist) in deinem GitHub-Konto. Auf jedem Gerät: App öffnen, Schlüssel einfügen, Passwort eingeben.</p>
       <ol class="hint" style="margin:0 0 16px;padding-left:20px;display:flex;flex-direction:column;gap:6px">
         <li><a href="https://github.com/settings/tokens/new?description=Fokusplan%20Sync&amp;scopes=gist" target="_blank" rel="noopener">Schlüssel bei GitHub erstellen</a>: Ablauf auf „No expiration“ stellen, nur „gist“ angehakt lassen, unten auf „Generate token“.</li>
         <li>Den Schlüssel (beginnt mit ghp_) kopieren und hier einfügen.</li>
+        <li>Beim ersten Mal ein Passwort wählen, auf weiteren Geräten dasselbe Passwort eingeben.</li>
       </ol>
       <div class="fields"><label class="field">Schlüssel<input id="sy-token" type="password" autocomplete="off" placeholder="ghp_…"></label></div>
       <div class="row" style="margin-top:14px"><button id="sy-connect" type="button" class="btn btn-primary">Verbinden</button></div>
     </div>
     <div class="card pad" id="sy-on" hidden>
-      <p class="hint" style="margin-bottom:16px">Verbunden. Änderungen gehen automatisch aufs andere Gerät. Fürs zweite Gerät: Schlüssel hier kopieren und dort einfügen (Mac → iPhone geht über die gemeinsame Zwischenablage).</p>
-      <div class="row"><button id="sy-now" type="button" class="btn btn-primary">Jetzt synchronisieren</button><button id="sy-copy" type="button" class="btn">Schlüssel kopieren</button><button id="sy-off-btn" type="button" class="btn">Trennen</button></div>
+      <p class="hint" style="margin-bottom:16px">Verbunden. Änderungen gehen verschlüsselt auf alle Geräte. Fürs nächste Gerät: Link kopieren und dort öffnen, dann nur noch das Passwort eingeben.</p>
+      <div class="row"><button id="sy-now" type="button" class="btn btn-primary">Jetzt synchronisieren</button><button id="sy-link" type="button" class="btn">Link für neues Gerät</button><button id="sy-copy" type="button" class="btn">Schlüssel kopieren</button><button id="sy-off-btn" type="button" class="btn">Trennen</button></div>
+    </div>
+
+    <div class="sec" id="ai-card"><h2>KI-Coach</h2><span class="meta" id="ai-status"></span></div>
+    <div class="card pad">
+      <div id="ai-off">
+        <p class="hint" style="margin-bottom:14px">Verbindet den Coach mit Claude. Du brauchst einen API-Schlüssel von Anthropic: <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener">Schlüssel erstellen</a> (Konto mit Guthaben nötig). Setz dort ein kleines Monatslimit. Der Schlüssel wird verschlüsselt gespeichert und mit deinen Geräten synchronisiert.</p>
+        <div class="fields"><label class="field">API-Schlüssel<input id="ai-key" type="password" autocomplete="off" placeholder="sk-ant-…"></label></div>
+        <div class="row" style="margin-top:14px"><button id="ai-save" type="button" class="btn btn-primary">Verbinden</button></div>
+      </div>
+      <div id="ai-on" hidden>
+        <div class="fields"><label class="field">Modell<select id="ai-model"></select></label></div>
+        <div class="row" style="margin-top:14px"><button id="ai-clear" type="button" class="btn">Chat leeren</button><button id="ai-remove" type="button" class="btn">Schlüssel entfernen</button></div>
+      </div>
+    </div>
+
+    <div class="sec"><h2>Apple Kalender</h2></div>
+    <div class="card pad">
+      <p class="hint" style="margin-bottom:16px">Exportiert alle Lernblöcke der nächsten 14 Tage mit Erinnerung 10 Minuten vorher und beim Start. Nach Änderungen alte Lernblöcke im Kalender löschen und neu exportieren.</p>
+      <div class="row"><button id="ics" class="btn btn-primary" type="button">Kalenderdatei speichern</button><button id="ics-show" type="button" class="btn">Als Text anzeigen</button></div>
+      <textarea id="ics-text" hidden readonly aria-label="ICS-Inhalt" style="margin-top:14px"></textarea>
     </div>
 
     <div class="sec"><h2>Daten</h2></div>
@@ -340,7 +454,8 @@ dialog.sheet::backdrop{background:rgba(0,0,0,.4);-webkit-backdrop-filter:blur(3p
 <nav class="tabbar" aria-label="Bereiche">
   <div class="in">
     <button type="button" data-tab="heute"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="3" fill="currentColor" stroke="none"/></svg>Heute<span class="badge" id="badge" hidden></span></button>
-    <button type="button" data-tab="woche"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Woche</button>
+    <button type="button" data-tab="kalender"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Kalender</button>
+    <button type="button" data-tab="coach"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"><path d="M5 5.5h14a2 2 0 012 2v8a2 2 0 01-2 2h-7l-4.5 3.5V17.5H5a2 2 0 01-2-2v-8a2 2 0 012-2z"/><path d="M8.5 11h7"/></svg>Coach</button>
     <button type="button" data-tab="lernplan"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 6.5C10 5 7 4.5 3.5 5v13.5c3.5-.5 6.5 0 8.5 1.5 2-1.5 5-2 8.5-1.5V5C17 4.5 14 5 12 6.5zM12 6.5V20"/></svg>Lernplan</button>
     <button type="button" data-tab="mehr"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="5.5" cy="12" r="1.9"/><circle cx="12" cy="12" r="1.9"/><circle cx="18.5" cy="12" r="1.9"/></svg>Mehr</button>
   </div>
@@ -375,16 +490,46 @@ dialog.sheet::backdrop{background:rgba(0,0,0,.4);-webkit-backdrop-filter:blur(3p
 <dialog class="sheet" id="sheet-mv" aria-labelledby="mv-h">
   <form id="mv-form">
     <div class="grab"></div>
-    <div class="eyebrow" id="mv-what"></div>
-    <h2 id="mv-h">Wann machst du es?</h2>
-    <div class="fields">
-      <label class="field">Neuer Start<input id="mv-dt" type="datetime-local"></label>
+    <div class="eyebrow" id="mv-count"></div>
+    <h2 id="mv-h">Was ist daraus geworden?</h2>
+    <div><div style="font-weight:600;font-size:18px;overflow-wrap:anywhere" id="mv-what"></div><div class="me" id="mv-when"></div></div>
+    <div class="seg seg3" role="group" aria-label="Ergebnis" id="mv-seg">
+      <button type="button" data-out="done" aria-pressed="false">Erledigt</button>
+      <button type="button" data-out="move" aria-pressed="true">Verschieben</button>
+      <button type="button" data-out="skip" aria-pressed="false">Nicht gemacht</button>
     </div>
-    <label class="field">Weshalb später?<input id="mv-why" type="text" placeholder="z. B. Schicht bis 22 Uhr"></label>
+    <div class="fields" id="mv-dtw"><label class="field">Neuer Start<input id="mv-dt" type="datetime-local"></label></div>
+    <div id="mv-rw" style="display:flex;flex-direction:column;gap:10px">
+      <label class="field">Weshalb nicht zur geplanten Zeit?<input id="mv-why" type="text" placeholder="z. B. Schicht bis 22 Uhr" autocomplete="off"></label>
+      <div class="chips" id="mv-chips"></div>
+    </div>
     <p class="err" id="mv-err"></p>
-    <div class="row"><button class="btn btn-primary" type="submit">Verschieben</button><button class="btn" type="button" data-close>Abbrechen</button></div>
+    <div class="row"><button class="btn btn-primary" type="submit" id="mv-ok">Verschieben</button><button class="btn" type="button" data-close>Später</button></div>
   </form>
 </dialog>
+
+<dialog class="sheet" id="sheet-pw" aria-labelledby="pw-h">
+  <form id="pw-form">
+    <div class="grab"></div>
+    <h2 id="pw-h">Passwort</h2>
+    <p class="hint" id="pw-t"></p>
+    <label class="field">Passwort<input id="pw-1" type="password" autocomplete="off"></label>
+    <label class="field" id="pw-2w">Passwort wiederholen<input id="pw-2" type="password" autocomplete="off"></label>
+    <p class="err" id="pw-err"></p>
+    <div class="row"><button class="btn btn-primary" type="submit">OK</button><button class="btn" type="button" data-close>Abbrechen</button></div>
+  </form>
+</dialog>
+
+<div class="lock" id="lock" hidden>
+  <form id="lock-form">
+    <h1>Fokusplan</h1>
+    <p class="lead" style="font-size:17px">Gib dein Passwort ein.</p>
+    <label class="field" style="text-align:left">Passwort<input id="lock-pw" type="password" autocomplete="current-password"></label>
+    <p class="err" id="lock-err"></p>
+    <button class="btn btn-primary" type="submit">Entsperren</button>
+    <button class="btn-plain btn" type="button" id="lock-reset" style="font-size:14px">Passwort vergessen? Lokale Daten löschen</button>
+  </form>
+</div>
 
 <input id="file" type="file" accept="application/json,.json" hidden>
 <div class="toast" id="toast" role="status"></div>
@@ -438,20 +583,51 @@ const WIN={wd:[8*60,21*60],we:[9*60+30,20*60]};
 const BUF={school:45,work:30,friends:30,social:30,other:15};
 const LOOKBACK_DAYS=3, MAX_PER_DAY=210, PROGRAM_START='2026-10-05'; // Woche 1 Lernplan Feld
 
+// ---------- Verschlüsselung (Passwort → AES-256-GCM) ----------
+// Das Passwort verlässt das Gerät nie. Lokal und in der Cloud liegen nur verschlüsselte Daten.
+const HAS_CRYPTO=!!(window.crypto&&crypto.subtle);
+function b64(u){u=new Uint8Array(u);let s='';for(let i=0;i<u.length;i+=0x8000)s+=String.fromCharCode.apply(null,u.subarray(i,i+0x8000));return btoa(s);}
+function unb64(s){const r=atob(s),u=new Uint8Array(r.length);for(let i=0;i<r.length;i++)u[i]=r.charCodeAt(i);return u;}
+const Vault={
+  pw:null,key:null,salt:null,
+  async derive(pw,salt){
+    const km=await crypto.subtle.importKey('raw',new TextEncoder().encode(pw),'PBKDF2',false,['deriveKey']);
+    return crypto.subtle.deriveKey({name:'PBKDF2',salt:unb64(salt),iterations:310000,hash:'SHA-256'},km,{name:'AES-GCM',length:256},false,['encrypt','decrypt']);
+  },
+  async unlock(pw,salt){const k=await this.derive(pw,salt);this.pw=pw;this.salt=salt;this.key=k;},
+  async setup(pw){await this.unlock(pw,b64(crypto.getRandomValues(new Uint8Array(16))));},
+  async keyFor(salt){if(this.key&&salt===this.salt)return this.key;if(this.pw)return this.derive(this.pw,salt);return null;},
+  async seal(str){
+    const iv=crypto.getRandomValues(new Uint8Array(12));
+    const ct=await crypto.subtle.encrypt({name:'AES-GCM',iv},this.key,new TextEncoder().encode(str));
+    return {enc:1,salt:this.salt,iv:b64(iv),ct:b64(ct)};
+  },
+  async open(env,key){return new TextDecoder().decode(await crypto.subtle.decrypt({name:'AES-GCM',iv:unb64(env.iv)},key,unb64(env.ct)));}
+};
+
 // ---------- Zustand (nur auf diesem Gerät) ----------
-const EMPTY={events:[],tasks:[],progress:{},blockDone:{},trackDone:{},step:{en:0,feld:0,ana:0,flex:0},pins:[],log:[],sched:[],missed:[],checkin:null,sessions:[],updatedAt:0,v:3};
+const DEF_MODEL='claude-sonnet-5-5';
+const MODELS=[['claude-sonnet-5-5','Sonnet 5.5 – ausgewogen'],['claude-haiku-5-5','Haiku 5.5 – schnell und günstig'],['claude-opus-5-5','Opus 5.5 – am stärksten']];
+const EMPTY={events:[],tasks:[],progress:{},blockDone:{},trackDone:{},step:{en:0,feld:0,ana:0,flex:0},pins:[],log:[],sched:[],missed:[],checkin:null,sessions:[],chat:[],settings:{aiKey:'',aiModel:DEF_MODEL},updatedAt:0,v:4};
 const LS='fokusplan-state';
 const clone=o=>JSON.parse(JSON.stringify(o));
 function norm(s){
   const o=Object.assign(clone(EMPTY),s||{});
   o.step=Object.assign({en:0,feld:0,ana:0,flex:0},o.step||{});
-  ['events','tasks','pins','log','sched','missed','sessions'].forEach(k=>{if(!Array.isArray(o[k]))o[k]=[];});
+  o.settings=Object.assign({aiKey:'',aiModel:DEF_MODEL},o.settings||{});
+  ['events','tasks','pins','log','sched','missed','sessions','chat'].forEach(k=>{if(!Array.isArray(o[k]))o[k]=[];});
   return o;
 }
-let state=clone(EMPTY);
-try{const s=localStorage.getItem(LS);if(s)state=norm(JSON.parse(s));}catch(e){}
+let state=clone(EMPTY),locked=false,lockedEnv=null;
+try{const s=localStorage.getItem(LS);if(s){const j=JSON.parse(s);if(j&&j.enc){locked=true;lockedEnv=j;}else state=norm(j);}}catch(e){}
 // saveLocal: nur dieses Gerät (automatische Neuberechnung). save: echte Änderung → auch synchronisieren.
-function saveLocal(){try{localStorage.setItem(LS,JSON.stringify(state));}catch(e){}}
+let wq=Promise.resolve();
+function saveLocal(){
+  if(locked)return;
+  const snap=JSON.stringify(state);
+  if(!Vault.key){try{localStorage.setItem(LS,snap);}catch(e){}return;}
+  wq=wq.then(()=>Vault.seal(snap)).then(env=>localStorage.setItem(LS,JSON.stringify(env))).catch(()=>{});
+}
 function save(){state.updatedAt=Date.now();saveLocal();Sync.push();}
 
 // ---------- Zeit-Helfer ----------
@@ -591,6 +767,7 @@ function findBlock(id){const m=state.missed.find(x=>x.id===id&&x.status==='open'
 // ---------- Render ----------
 let P=null,focus=null,target=null,view='heute',rit={r1:false,r2:false,goal:''};
 try{view=localStorage.getItem('fokusplan-tab')||'heute';}catch(e){}
+if(!['heute','kalender','coach','lernplan','mehr'].includes(view))view=view==='woche'?'kalender':'heute';
 const KIND={school:'Schule',work:'Arbeit',friends:'Freunde',social:'Termin',other:'Sonstiges'};
 const labOf=b=>b.kind==='track'?(b.kuer?'Kür':'Lernplan Feld'):'Schule-Vorbereitung';
 
@@ -600,7 +777,7 @@ function render(){
   $('ci-switch').checked=!!state.checkin;
   $('ci-label').textContent=state.checkin?'Eingecheckt':'Einchecken';
   $('badge').hidden=!miss.length;$('badge').textContent=miss.length;
-  renderHeute(miss);renderWoche();renderLernplan();renderMehr();
+  renderHeute(miss);renderCal();renderCoach();renderLernplan();renderMehr();
   showView(view);
 }
 function showView(v){
@@ -630,7 +807,7 @@ function renderHeute(miss){
     $('ci-list').innerHTML=(miss.length||open.length?'':'<p class="empty">Für heute ist alles erledigt.</p>')+rows.join('');
   }
   $('miss-wrap').hidden=!!state.checkin||!miss.length;
-  if(!state.checkin&&miss.length)$('miss-list').innerHTML=miss.map(m=>todoRow(asBlock(m))).join('');
+  $('miss-list').innerHTML=!state.checkin?miss.map(m=>todoRow(asBlock(m))).join(''):'';
 
   renderNow();
   const items=dayItems(today,true);
@@ -643,7 +820,7 @@ function todoRow(b){
   const title=b.url&&!b.done?'<a href="'+esc(b.url)+'" target="_blank" rel="noopener">'+esc(b.title)+'</a>':esc(b.title);
   return '<div class="'+cls+'">'+(b.done?'<span class="check on" aria-label="Erledigt">'+CHECK+'</span>':'<button class="check" type="button" data-done="'+esc(b.id)+'" aria-label="Als erledigt markieren"></button>')+
     '<div><div class="ti">'+title+'</div><div class="me">'+when+' · '+labOf(b)+'</div></div>'+
-    (b.done?'<span></span>':'<button class="btn btn-sm'+(b.missed?' btn-red':'')+'" type="button" data-move="'+esc(b.id)+'">Verschieben</button>')+'</div>';
+    (b.done?'<span></span>':'<button class="btn btn-sm'+(b.missed?' btn-red':'')+'" type="button" data-move="'+esc(b.id)+'">'+(b.missed?'Klären':'Verschieben')+'</button>')+'</div>';
 }
 function dayItems(day,withMissed){
   const{blocks,ev,now}=P;
@@ -654,12 +831,17 @@ function dayItems(day,withMissed){
 }
 function itemHTML(x){
   const time=x.allDay?'ganztägig':hm(x.s)+'–'+hm(x.e);
+  if(x.gone){
+    const lab=(x.gone==='moved'?'Verschoben':'Nicht gemacht')+' · '+labOf(x);
+    const why='<div class="why">'+(x.gone==='moved'&&x.to?'→ '+shortDT(new Date(x.to))+' · ':'')+'Grund: '+esc(x.reason||'–')+'</div>';
+    return '<div class="it study gone"><span class="time">'+time+'</span><span class="dot"></span><div style="min-width:0"><div class="me">'+lab+'</div><div class="ti">'+esc(x.title)+'</div>'+why+'</div><span></span></div>';
+  }
   if(x.study){
     const cls='it study'+(x.kuer?' kuer':'')+(x.done?' done':'')+(x.current?' current':'')+(x.missed?' missed':'');
     const lab=(x.missed?'Verpasst · ':'')+labOf(x)+(x.pin?' · verschoben':'')+(x.current?' · jetzt':'');
     const title=x.url&&!x.done?'<a href="'+esc(x.url)+'" target="_blank" rel="noopener">'+esc(x.title)+'</a>':esc(x.title);
     const act=x.done?'<span class="ok">Erledigt</span>':x.missed?'<span></span>':'<button class="btn btn-sm" type="button" data-move="'+esc(x.id)+'">Verschieben</button>';
-    const missActs=x.missed?'<div class="acts"><button class="btn btn-sm btn-red" type="button" data-done="'+esc(x.id)+'">Nachgeholt</button><button class="btn btn-sm" type="button" data-move="'+esc(x.id)+'">Verschieben</button></div>':'';
+    const missActs=x.missed?'<div class="acts"><button class="btn btn-sm btn-red" type="button" data-done="'+esc(x.id)+'">Nachgeholt</button><button class="btn btn-sm" type="button" data-move="'+esc(x.id)+'" data-mode="move">Verschieben</button><button class="btn btn-sm" type="button" data-move="'+esc(x.id)+'" data-mode="skip">Nicht gemacht</button></div>':'';
     return '<div class="'+cls+'"><span class="time">'+time+'</span><span class="dot"></span><div style="min-width:0"><div class="me">'+lab+'</div><div class="ti">'+title+'</div>'+missActs+'</div>'+act+'</div>';
   }
   return '<div class="it k-'+x.kind+'"><span class="time">'+time+'</span><span class="dot"></span><div style="min-width:0"><div class="me">'+KIND[x.kind]+'</div><div class="ti" style="font-weight:500">'+esc(x.title)+'</div></div><button class="x" type="button" data-del="'+esc(x.id)+'" aria-label="Termin löschen">×</button></div>';
@@ -696,14 +878,66 @@ function renderNow(){
    '<button class="btn" type="button" data-done="'+esc(b.id)+'">Schon erledigt</button>'+(target?'<button class="btn" type="button" id="untarget">Zurück</button>':'')+'</div>';
 }
 
-function renderWoche(){
-  const{now}=P;let w='';
-  for(let i=1;i<=7;i++){
-    const d=new Date(now);d.setDate(d.getDate()+i);const its=dayItems(iso(d),false);const n=its.filter(x=>x.study).length;
-    w+='<div><div class="sec"><h3>'+dayLabel(d)+'</h3><span class="meta">'+(n?n+(n>1?' Lernblöcke':' Lernblock'):'')+'</span></div>'+
-       '<div class="card">'+(its.length?its.map(itemHTML).join(''):'<p class="empty">Frei</p>')+'</div></div>';
+// ---------- Kalender ----------
+let calMode='month',calSel=iso(new Date()),calAnchor=new Date();
+try{calMode=localStorage.getItem('fokusplan-calmode')==='week'?'week':'month';}catch(e){}
+function dayMap(){
+  const m={};const g=d=>m[d]||(m[d]={ev:[],bl:[],mi:[]});
+  P.ev.forEach(e=>g(e.date).ev.push(e));
+  P.blocks.forEach(b=>g(iso(b.s)).bl.push(b));
+  state.missed.forEach(x=>{if(x.status!=='done')g(iso(new Date(x.s))).mi.push(x);});
+  return m;
+}
+function calItems(day,dm){
+  const x=dm[day]||{ev:[],bl:[],mi:[]};const now=new Date();
+  const bl=x.bl.map(b=>({...b,study:true,current:!b.done&&b.s<=now&&b.e>now}));
+  const mi=x.mi.map(m=>{
+    const b=asBlock(m);
+    if(m.status==='open')return b;
+    return {...b,missed:false,gone:m.status==='moved'?'moved':'skipped'};
+  });
+  return x.ev.concat(bl,mi).sort((a,b)=>(b.allDay?1:0)-(a.allDay?1:0)||a.s-b.s);
+}
+function renderCal(){
+  const dm=dayMap(),today=iso(new Date());
+  document.querySelectorAll('[data-cal-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.calMode===calMode));
+  $('cal-day-wrap').hidden=calMode!=='month';$('cal-week').hidden=calMode!=='week';$('cal-grid').hidden=calMode!=='month';
+  if(calMode==='month'){
+    const a=new Date(calAnchor.getFullYear(),calAnchor.getMonth(),1);
+    $('cal-title').textContent=MON[a.getMonth()]+' '+a.getFullYear();
+    const first=monday(a),offset=(a.getDay()+6)%7,days=new Date(a.getFullYear(),a.getMonth()+1,0).getDate(),weeks=Math.ceil((offset+days)/7);
+    let h='<div class="cal-h">'+['Mo','Di','Mi','Do','Fr','Sa','So'].map(d=>'<span>'+d+'</span>').join('')+'</div><div class="cal-g">';
+    for(let i=0;i<weeks*7;i++){
+      const d=new Date(first);d.setDate(d.getDate()+i);const k=iso(d),x=dm[k]||{ev:[],bl:[],mi:[]};
+      const kinds=[...new Set(x.ev.map(e=>e.kind))].slice(0,3);
+      const openMiss=x.mi.some(m=>m.status==='open'),skipped=x.mi.some(m=>m.status==='skipped');
+      let dots=kinds.map(c=>'<i class="d k-'+c+'"></i>').join('');
+      if(openMiss||skipped)dots+='<i class="d ms"></i>';
+      else if(x.bl.length)dots+='<i class="d '+(x.bl.every(b=>b.done)?'dn':'st')+'"></i>';
+      h+='<button type="button" class="cal-d'+(d.getMonth()!==a.getMonth()?' oth':'')+(k===today?' today':'')+(k===calSel?' sel':'')+'" data-cal="'+k+'" aria-label="'+dayLabel(d)+'"><span class="n">'+d.getDate()+'</span><span class="dots">'+dots+'</span></button>';
+    }
+    h+='</div><div class="legend"><span><i style="background:var(--c-work)"></i>Arbeit</span><span><i style="background:var(--c-school)"></i>Schule</span><span><i style="background:var(--c-friends)"></i>Freunde</span><span><i style="background:var(--c-study)"></i>Lernblock</span><span><i style="background:var(--green)"></i>erledigt</span><span><i style="background:var(--red)"></i>offen / nicht gemacht</span></div>';
+    $('cal-grid').innerHTML=h;
+    const sel=at(calSel,'00:00'),its=calItems(calSel,dm),n=its.filter(x=>x.study).length;
+    $('cal-day-h').textContent=dayLabel(sel);
+    $('cal-day-m').textContent=n?n+(n>1?' Lernblöcke':' Lernblock'):'';
+    $('cal-day').innerHTML=its.length?its.map(itemHTML).join(''):'<p class="empty">Nichts eingetragen.</p>';
+  }else{
+    const mon=monday(calAnchor),end=new Date(mon);end.setDate(end.getDate()+6);
+    $('cal-title').textContent=mon.getDate()+'.'+(mon.getMonth()+1)+'. – '+end.getDate()+'.'+(end.getMonth()+1)+'.'+end.getFullYear();
+    let w='';
+    for(let i=0;i<7;i++){
+      const d=new Date(mon);d.setDate(d.getDate()+i);const k=iso(d),its=calItems(k,dm),n=its.filter(x=>x.study).length;
+      w+='<div><div class="sec"><h3'+(k===today?' style="color:var(--orange)"':'')+'>'+dayLabel(d)+'</h3><span class="meta">'+(n?n+(n>1?' Lernblöcke':' Lernblock'):'')+'</span></div>'+
+        '<div class="card">'+(its.length?its.map(itemHTML).join(''):'<p class="empty">Frei</p>')+'</div></div>';
+    }
+    $('cal-week').innerHTML=w;
   }
-  $('week').innerHTML=w;
+}
+function calNav(dir){
+  if(calMode==='month'){calAnchor=new Date(calAnchor.getFullYear(),calAnchor.getMonth()+dir,1);calSel=iso(calAnchor);}
+  else{calAnchor=monday(calAnchor);calAnchor.setDate(calAnchor.getDate()+7*dir);}
+  renderCal();
 }
 
 function renderLernplan(){
@@ -748,12 +982,18 @@ function renderMehr(){
   const miss=missedOpen().length;
   $('stats').innerHTML='<div class="stat"><div class="v">'+dur(wkMin*6e4)+'</div><div class="k">eingecheckt diese Woche</div></div>'+
     '<div class="stat"><div class="v">'+wkDone+'</div><div class="k">Blöcke erledigt diese Woche</div></div>'+
-    '<div class="stat'+(miss?' red':'')+'"><div class="v">'+miss+'</div><div class="k">verpasst, noch offen</div></div>';
+    '<div class="stat'+(miss?' red':'')+'"><div class="v">'+miss+'</div><div class="k">verpasst, noch offen</div></div>'+
+    '<div class="stat"><div class="v">'+state.log.filter(l=>l.type==='skip'&&new Date(l.at).getTime()>now.getTime()-7*864e5).length+'</div><div class="k">nicht gemacht, 7 Tage</div></div>';
   const ss=state.sessions.slice(-6).reverse();
   $('sessions').innerHTML=ss.length?ss.map(s=>'<div class="logi"><div class="ti">'+dur(s.min*6e4)+(s.done?' · '+s.done+' erledigt':'')+'</div><div class="me">'+shortDT(new Date(s.s))+' bis '+hm(new Date(s.e))+'</div></div>').join(''):'<p class="empty">Noch nie eingecheckt. Schalter oben rechts.</p>';
   const recent=state.log.filter(l=>new Date(l.at).getTime()>now.getTime()-7*864e5);
   $('log-sum').textContent=recent.length+' Mal in den letzten 7 Tagen';
-  $('log').innerHTML=state.log.length?state.log.slice(-8).reverse().map(l=>'<div class="logi"><div class="ti">'+esc(l.title)+'</div><div class="me">'+shortDT(new Date(l.from))+' → '+shortDT(new Date(l.to))+'<br>Grund: '+esc(l.reason||'–')+'</div></div>').join(''):'<p class="empty">Noch nichts verschoben.</p>';
+  $('log').innerHTML=state.log.length?state.log.slice(-12).reverse().map(l=>'<div class="logi"><div class="ti">'+esc(l.title)+'</div><div class="me">'+(l.type==='skip'?'Nicht gemacht · geplant '+shortDT(new Date(l.from)):'Verschoben '+shortDT(new Date(l.from))+' → '+shortDT(new Date(l.to)))+'<br>Grund: '+esc(l.reason||'–')+'</div></div>').join(''):'<p class="empty">Noch nichts verschoben.</p>';
+  $('pw-status').textContent=Vault.key?'Aktiv':'Nicht gesetzt';
+  $('pw-set').textContent=Vault.key?'Passwort ändern':'Passwort festlegen';$('pw-lock').hidden=!Vault.key;
+  const has=!!state.settings.aiKey;
+  $('ai-off').hidden=has;$('ai-on').hidden=!has;$('ai-status').textContent=has?'Verbunden':'Nicht verbunden';
+  $('ai-model').innerHTML=MODELS.map(m=>'<option value="'+m[0]+'"'+(m[0]===state.settings.aiModel?' selected':'')+'>'+m[1]+'</option>').join('');
 }
 
 // ---------- Aktionen ----------
@@ -777,22 +1017,56 @@ function markDone(id){
   if(target===id)target=null;
   toast('Erledigt');render();
 }
-let moveB=null;
-function openMove(id){
-  const b=findBlock(id);if(!b)return;moveB=b;
-  $('mv-what').textContent=(b.missed?'Verpasst · ':'')+b.title;
+let moveB=null,mvOut='move',reviewQ=null;
+const WHY=['Keine Zeit','Schicht oder Termin länger','Müde oder krank','Vergessen','Keine Motivation','Anderes war wichtiger'];
+function setOut(o){
+  mvOut=o;
+  document.querySelectorAll('#mv-seg [data-out]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.out===o));
+  $('mv-dtw').hidden=o!=='move';$('mv-rw').hidden=o==='done';
+  $('mv-ok').textContent=o==='done'?'Als erledigt eintragen':o==='move'?'Verschieben':'Als nicht gemacht eintragen';
+  $('mv-why').placeholder=o==='skip'?'Weshalb hast du es nicht gemacht?':'z. B. Schicht bis 22 Uhr';
+  $('mv-err').textContent='';
+}
+function openMove(id,mode,q){
+  const b=findBlock(id);if(!b)return;moveB=b;reviewQ=q||null;
+  $('mv-count').textContent=q?'Offen aus der Vergangenheit · '+q.i+' von '+q.n:'';
+  $('mv-what').textContent=b.title;
+  $('mv-when').textContent=(b.missed?'Verpasst · ':'')+shortDT(b.s)+'–'+hm(b.e)+' · '+labOf(b);
+  $('mv-h').textContent=b.missed?'Was ist daraus geworden?':'Verschieben';
+  $('mv-seg').hidden=!b.missed;
   const d=new Date();d.setMinutes(0,0,0);d.setHours(d.getHours()+1);
-  $('mv-dt').value=local(d);$('mv-why').value='';$('mv-err').textContent='';
+  $('mv-dt').value=local(d);$('mv-why').value='';
+  $('mv-chips').innerHTML=WHY.map(w=>'<button type="button" class="chip" data-why="'+esc(w)+'">'+esc(w)+'</button>').join('');
+  setOut(b.missed&&['done','move','skip'].includes(mode)?mode:'move');
   $('sheet-mv').showModal();
 }
 function applyPostpone(b,sd,reason){
   const len=Math.round((b.e-b.s)/6e4);
-  state.log.push({at:new Date().toISOString(),title:b.title,from:b.s.toISOString(),to:sd.toISOString(),reason});
+  state.log.push({type:'move',at:new Date().toISOString(),title:b.title,from:b.s.toISOString(),to:sd.toISOString(),reason});
   if(b.pin)state.pins=state.pins.filter(p=>p.id!==b.pin);
   state.sched=state.sched.filter(x=>x.id!==b.id);
-  if(b.missed){const m=state.missed.find(x=>x.id===b.id);if(m)m.status='moved';}
+  if(b.missed){const m=state.missed.find(x=>x.id===b.id);if(m){m.status='moved';m.reason=reason;m.to=sd.toISOString();}}
   state.pins.push({id:'p'+Date.now(),kind:b.kind,ref:b.ref,week:b.kind==='track'?iso(monday(sd)):undefined,title:b.title,url:b.url||'',s:sd.toISOString(),len});
   target=null;save();render();
+}
+// Nicht gemacht: Zeit wird nicht gutgeschrieben, der Planer legt den Rest neu.
+function skipBlock(b,reason){
+  state.log.push({type:'skip',at:new Date().toISOString(),title:b.title,from:b.s.toISOString(),to:null,reason});
+  if(b.pin)state.pins=state.pins.filter(p=>p.id!==b.pin);
+  state.sched=state.sched.filter(x=>x.id!==b.id);
+  const m=state.missed.find(x=>x.id===b.id);if(m){m.status='skipped';m.reason=reason;}
+  target=null;save();render();
+}
+function nextReview(){
+  if(!reviewQ)return;
+  const rest=missedOpen();
+  if(!rest.length){reviewQ=null;toast('Alles geklärt');return;}
+  const i=reviewQ.i+1;openMove(rest[0].id,'move',{i,n:Math.max(reviewQ.n,i)});
+}
+function openReview(){
+  const m=missedOpen();
+  if(!m.length||focus||document.querySelector('dialog[open]'))return;
+  openMove(m[0].id,'move',{i:1,n:m.length});
 }
 function setCheckin(on){
   if(on&&!state.checkin){state.checkin={s:new Date().toISOString(),done:0};toast('Eingecheckt. Los geht’s.');}
@@ -828,37 +1102,58 @@ setInterval(()=>{
   if(state.checkin){const c=$('ci-time');if(c)c.textContent=hms(new Date()-new Date(state.checkin.s));}
 },1000);
 function maybeRender(){
-  if(focus||document.querySelector('dialog[open]'))return;
+  if(locked||focus||document.querySelector('dialog[open]'))return;
   const a=document.activeElement;if(a&&/INPUT|TEXTAREA|SELECT/.test(a.tagName))return;
   render();
 }
-setInterval(()=>{if(!document.hidden)Sync.pull();maybeRender();},60000);
-document.addEventListener('visibilitychange',()=>{if(!document.hidden){Sync.pull();maybeRender();}});
+setInterval(()=>{if(!document.hidden&&!locked)Sync.pull();maybeRender();},60000);
+document.addEventListener('visibilitychange',()=>{if(!document.hidden&&!locked){Sync.pull();maybeRender();}});
 
 // ---------- Events ----------
 let kind='work';
 document.querySelectorAll('[data-kind]').forEach(b=>b.addEventListener('click',()=>{kind=b.dataset.kind;document.querySelectorAll('[data-kind]').forEach(x=>x.setAttribute('aria-pressed',x===b));$('prep-wrap').hidden=kind!=='school';}));
 $('ev-allday').addEventListener('change',e=>{$('ev-from').disabled=e.target.checked;$('ev-to').disabled=e.target.checked;});
-function openAdd(){$('ev-date').value=iso(new Date());$('ev-err').textContent='';$('sheet-ev').showModal();}
-$('add-btn').addEventListener('click',openAdd);
+function openAdd(d){$('ev-date').value=d||iso(new Date());$('ev-err').textContent='';$('sheet-ev').showModal();}
+$('add-btn').addEventListener('click',()=>openAdd());
+function addEvent(o){
+  const kinds=['work','friends','school','other'];
+  const kind=kinds.includes(o.kind)?o.kind:'other',allDay=!!o.allDay,date=o.date,from=allDay?'':(o.from||''),to=allDay?'':(o.to||'');
+  if(!/^\d{4}-\d{2}-\d{2}$/.test(date||'')||(!allDay&&(!/^\d{2}:\d{2}$/.test(from)||!/^\d{2}:\d{2}$/.test(to)||to<=from)))return{err:'Datum und eine gültige Zeit angeben.'};
+  const title=(o.title||'').trim()||KIND[kind];
+  const id='u'+Date.now()+Math.random().toString(36).slice(2,5);
+  state.events.push({id,date,from,to,title,kind,allDay});
+  const p=+o.prep||0;
+  if(kind==='school'&&!allDay&&p)state.tasks.push({id:'t'+id,title:(p===60?'Skills Schritt 1 – ':'Vorbereitung – ')+title,forT:title,due:date+'T'+from,min:p,ev:id});
+  save();render();
+  return{id,title,date,from,to,allDay};
+}
+function delEvent(id){
+  const ev=state.events.find(x=>x.id===id);if(!ev)return null;
+  state.events=state.events.filter(x=>x.id!==id);state.tasks=state.tasks.filter(x=>x.ev!==id);save();render();return ev;
+}
 $('ev-form').addEventListener('submit',e=>{
   e.preventDefault();
-  const date=$('ev-date').value,allDay=$('ev-allday').checked;
-  const from=allDay?'':$('ev-from').value,to=allDay?'':$('ev-to').value;
-  if(!date||(!allDay&&(!from||!to||to<=from))){$('ev-err').textContent='Datum und eine gültige Zeit angeben.';return;}
-  const title=$('ev-title').value.trim()||KIND[kind];
-  const id='u'+Date.now();
-  state.events.push({id,date,from,to,title,kind,allDay});
-  if(kind==='school'&&!allDay){const p=+$('ev-prep').value;if(p)state.tasks.push({id:'t'+id,title:(p===60?'Skills Schritt 1 – ':'Vorbereitung – ')+title,forT:title,due:date+'T'+from,min:p,ev:id});}
-  $('ev-title').value='';$('sheet-ev').close();
-  save();render();toast('Eingetragen');
+  const r=addEvent({date:$('ev-date').value,allDay:$('ev-allday').checked,from:$('ev-from').value,to:$('ev-to').value,title:$('ev-title').value,kind,prep:$('ev-prep').value});
+  if(r.err){$('ev-err').textContent=r.err;return;}
+  $('ev-title').value='';$('sheet-ev').close();toast('Eingetragen');
 });
+$('mv-seg').addEventListener('click',e=>{const b=e.target.closest('[data-out]');if(b)setOut(b.dataset.out);});
+$('mv-chips').addEventListener('click',e=>{const c=e.target.closest('[data-why]');if(c){$('mv-why').value=c.dataset.why;$('mv-why').focus();}});
 $('mv-form').addEventListener('submit',e=>{
   e.preventDefault();
-  const v=$('mv-dt').value,why=$('mv-why').value.trim();
-  if(!v||!why){$('mv-err').textContent='Zeit und Grund angeben.';return;}
-  const sd=new Date(v);if(isNaN(sd)||sd<new Date()){$('mv-err').textContent='Der neue Start muss in der Zukunft liegen.';return;}
-  $('sheet-mv').close();applyPostpone(moveB,sd,why);toast('Verschoben auf '+shortDT(sd));
+  const b=moveB;if(!b)return;
+  const why=$('mv-why').value.trim(),err=t=>{$('mv-err').textContent=t;};
+  if(mvOut==='done'){$('sheet-mv').close();markDone(b.id);}
+  else if(mvOut==='skip'){
+    if(!why){err('Bitte kurz erklären, weshalb nicht.');return;}
+    $('sheet-mv').close();skipBlock(b,why);toast('Als nicht gemacht eingetragen');
+  }else{
+    const v=$('mv-dt').value;
+    if(!v||!why){err('Neue Zeit und Grund angeben.');return;}
+    const sd=new Date(v);if(isNaN(sd)||sd<new Date()){err('Der neue Start muss in der Zukunft liegen.');return;}
+    $('sheet-mv').close();applyPostpone(b,sd,why);toast('Verschoben auf '+shortDT(sd));
+  }
+  nextReview();
 });
 $('ci-switch').addEventListener('change',e=>setCheckin(e.target.checked));
 $('ci-out').addEventListener('click',()=>setCheckin(false));
@@ -867,12 +1162,18 @@ document.addEventListener('click',e=>{
   const t=e.target;
   const tab=t.closest('[data-tab]');if(tab){showView(tab.dataset.tab);window.scrollTo({top:0});return;}
   if(t.closest('[data-close]')){t.closest('dialog').close();return;}
-  if(t.closest('[data-add]')){openAdd();return;}
+  if(t.closest('[data-add]')){openAdd(view==='kalender'&&calMode==='month'?calSel:undefined);return;}
+  if(t.closest('[data-review]')){openReview();return;}
+  if(t.closest('[data-goto-ai]')){showView('mehr');const c=$('ai-card');if(c)c.scrollIntoView();return;}
+  const cd=t.closest('[data-cal]');if(cd){calSel=cd.dataset.cal;const x=at(calSel,'00:00');if(x.getMonth()!==calAnchor.getMonth()||x.getFullYear()!==calAnchor.getFullYear())calAnchor=new Date(x.getFullYear(),x.getMonth(),1);renderCal();return;}
+  const cn=t.closest('[data-cal-nav]');if(cn){calNav(+cn.dataset.calNav);return;}
+  const cm=t.closest('[data-cal-mode]');if(cm){calMode=cm.dataset.calMode;try{localStorage.setItem('fokusplan-calmode',calMode);}catch(e){}calAnchor=calMode==='week'?at(calSel,'00:00'):new Date(at(calSel,'00:00').getFullYear(),at(calSel,'00:00').getMonth(),1);renderCal();return;}
+  if(t.closest('[data-cal-today]')){calSel=iso(new Date());calAnchor=calMode==='week'?new Date():new Date(new Date().getFullYear(),new Date().getMonth(),1);renderCal();return;}
   if(t.closest('[data-import]')){$('file').click();return;}
   const d=t.closest('[data-del]');
-  if(d){const id=d.dataset.del;const ev=state.events.find(x=>x.id===id);state.events=state.events.filter(x=>x.id!==id);state.tasks=state.tasks.filter(x=>x.ev!==id);save();render();toast((ev?ev.title:'Termin')+' gelöscht');return;}
+  if(d){const ev=delEvent(d.dataset.del);toast((ev?ev.title:'Termin')+' gelöscht');return;}
   const dn=t.closest('[data-done]');if(dn){markDone(dn.dataset.done);return;}
-  const mv=t.closest('[data-move]');if(mv){openMove(mv.dataset.move);return;}
+  const mv=t.closest('[data-move]');if(mv){openMove(mv.dataset.move,mv.dataset.mode);return;}
   const nx=t.closest('[data-next]');if(nx){state.step[nx.dataset.next]=(state.step[nx.dataset.next]||0)+1;save();render();return;}
   const pv=t.closest('[data-prev]');if(pv){state.step[pv.dataset.prev]=Math.max(0,(state.step[pv.dataset.prev]||0)-1);save();render();return;}
   if(t.id==='start'){const b=currentBlock();if(b)startFocus(b);}
@@ -912,7 +1213,7 @@ $('ics').addEventListener('click',()=>{
 
 // ---------- Sicherung / Termine laden ----------
 $('bk-save').addEventListener('click',()=>{
-  saveFile('Fokusplan-Sicherung-'+iso(new Date())+'.json',JSON.stringify(state,null,1),'application/json').then(()=>toast('Sicherung erstellt')).catch(()=>toast('Speichern fehlgeschlagen'));
+  saveFile('Fokusplan-Sicherung-'+iso(new Date())+'.json',JSON.stringify({...state,settings:{...state.settings,aiKey:''}},null,1),'application/json').then(()=>toast('Sicherung erstellt')).catch(()=>toast('Speichern fehlgeschlagen'));
 });
 $('file').addEventListener('change',async e=>{
   const f=e.target.files[0];e.target.value='';if(!f)return;
@@ -922,44 +1223,137 @@ $('file').addEventListener('change',async e=>{
       let n=0;(s.events||[]).forEach(x=>{if(!state.events.some(y=>y.id===x.id)){state.events.push(x);n++;}});
       (s.tasks||[]).forEach(x=>{if(!state.tasks.some(y=>y.id===x.id))state.tasks.push(x);});
       save();render();toast(n?n+' Termine geladen':'Termine waren schon geladen');
-    }else if(s&&typeof s==='object'&&'step' in s){state=norm(s);save();render();toast('Sicherung geladen');}
+    }else if(s&&typeof s==='object'&&'step' in s){const k=state.settings.aiKey;state=norm(s);if(!state.settings.aiKey)state.settings.aiKey=k;save();render();toast('Sicherung geladen');}
     else throw 0;
   }catch(err){toast('Diese Datei passt nicht zu Fokusplan');}
 });
 
-// ---------- Sync Mac ↔ iPhone (GitHub Gist) ----------
+// ---------- Passwort-Dialog ----------
+let pwRes=null;
+function askPw(o){
+  return new Promise(res=>{
+    if(pwRes){pwRes(null);pwRes=null;}
+    $('pw-h').textContent=o.title;$('pw-t').textContent=o.text||'';
+    $('pw-1').value='';$('pw-2').value='';$('pw-2w').hidden=!o.confirm;$('pw-err').textContent='';
+    pwRes=res;$('pw-form').dataset.confirm=o.confirm?'1':'';
+    $('sheet-pw').showModal();setTimeout(()=>$('pw-1').focus(),60);
+  });
+}
+$('sheet-pw').addEventListener('close',()=>{if(pwRes){const r=pwRes;pwRes=null;r(null);}});
+$('pw-form').addEventListener('submit',e=>{
+  e.preventDefault();
+  const a=$('pw-1').value,conf=!!$('pw-form').dataset.confirm;
+  if(!a){$('pw-err').textContent='Bitte Passwort eingeben.';return;}
+  if(conf){
+    if(a.length<8){$('pw-err').textContent='Mindestens 8 Zeichen.';return;}
+    if(a!==$('pw-2').value){$('pw-err').textContent='Die beiden Passwörter sind nicht gleich.';return;}
+  }
+  const r=pwRes;pwRes=null;$('sheet-pw').close();if(r)r(a);
+});
+// Stellt sicher, dass ein Passwort gesetzt ist (nötig für Cloud und KI-Schlüssel).
+async function ensurePassword(){
+  if(Vault.key)return true;
+  if(!HAS_CRYPTO){toast('Verschlüsselung braucht eine https-Adresse');return false;}
+  const pw=await askPw({title:'Passwort festlegen',confirm:true,text:'Sperrt die App und verschlüsselt deine Daten auf diesem Gerät und in der Cloud. Es kann nicht zurückgesetzt werden.'});
+  if(!pw)return false;
+  await Vault.setup(pw);saveLocal();await Sync.saveCfg();render();toast('Passwort gesetzt');return true;
+}
+async function changePassword(){
+  if(!HAS_CRYPTO){toast('Verschlüsselung braucht eine https-Adresse');return;}
+  const pw=await askPw({title:Vault.key?'Neues Passwort':'Passwort festlegen',confirm:true,text:Vault.key?'Andere Geräte fragen beim nächsten Abgleich nach dem neuen Passwort.':'Sperrt die App und verschlüsselt deine Daten auf diesem Gerät und in der Cloud. Es kann nicht zurückgesetzt werden.'});
+  if(!pw)return;
+  await Vault.setup(pw);await Sync.saveCfg();save();render();toast('Passwort gesetzt');
+}
+$('pw-set').addEventListener('click',changePassword);
+$('pw-lock').addEventListener('click',()=>location.reload());
+
+// ---------- Sperrbildschirm ----------
+function showLock(){document.body.classList.add('locked');$('lock').hidden=false;setTimeout(()=>$('lock-pw').focus(),60);}
+$('lock-form').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const pw=$('lock-pw').value;if(!pw||!lockedEnv)return;
+  $('lock-err').textContent='';
+  try{
+    const k=await Vault.derive(pw,lockedEnv.salt);
+    const txt=await Vault.open(lockedEnv,k);
+    Vault.pw=pw;Vault.salt=lockedEnv.salt;Vault.key=k;
+    state=norm(JSON.parse(txt));locked=false;lockedEnv=null;
+    $('lock-pw').value='';$('lock').hidden=true;document.body.classList.remove('locked');
+    start();
+  }catch(err){$('lock-err').textContent='Falsches Passwort.';$('lock-pw').select();}
+});
+$('lock-reset').addEventListener('click',()=>{
+  if(!confirm('Alle Daten auf diesem Gerät löschen? Daten in der Cloud bleiben verschlüsselt und sind ohne Passwort nicht lesbar.'))return;
+  try{localStorage.removeItem(LS);localStorage.removeItem('fokusplan-sync');}catch(e){}
+  location.reload();
+});
+
+// ---------- Sync auf alle Geräte (GitHub Gist, verschlüsselt) ----------
 // Neuester Stand gewinnt. Holt beim Öffnen, beim Zurückkehren in die App und jede Minute;
-// schickt jede echte Änderung nach kurzer Pause.
+// schickt jede echte Änderung nach kurzer Pause. In der Cloud liegt nur der verschlüsselte Stand.
 const Sync=(()=>{
   const KEY='fokusplan-sync',FILE='fokusplan.json',DESC='Fokusplan Sync (nicht löschen)';
-  let cfg=null,t=null,busy=false,last=null;
-  try{cfg=JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){}
+  let cfg=null,t=null,busy=false,last=null,reauth=false,reauthSkip=0;
   const api=(path,opt={})=>fetch('https://api.github.com'+path,{...opt,cache:'no-store',headers:{'Authorization':'Bearer '+cfg.token,'Accept':'application/vnd.github+json','Content-Type':'application/json'}})
     .then(r=>{if(r.status===401)throw new Error('auth');if(!r.ok)throw new Error('http '+r.status);return r.json();});
   function status(txt){const el=$('sy-status');if(el)el.textContent=txt;}
   function ui(){
     $('sy-off').hidden=!!cfg;$('sy-on').hidden=!cfg;
-    status(cfg?(last?'Synchronisiert '+hm(last):'Verbunden'):'Nicht verbunden');
+    status(cfg?(!Vault.key?'Passwort nötig':last?'Synchronisiert '+hm(last):'Verbunden'):'Nicht verbunden');
   }
-  async function read(){
-    const g=await api('/gists/'+cfg.id);const f=g.files&&g.files[FILE];if(!f)return null;
+  async function init(){
+    try{
+      const raw=localStorage.getItem(KEY);if(!raw)return;const j=JSON.parse(raw);
+      if(j&&j.enc){const k=await Vault.keyFor(j.salt);if(!k)return;cfg=JSON.parse(await Vault.open(j,k));}else cfg=j;
+    }catch(e){}
+  }
+  async function saveCfg(){
+    try{
+      if(!cfg){localStorage.removeItem(KEY);return;}
+      const txt=JSON.stringify(cfg);
+      localStorage.setItem(KEY,Vault.key?JSON.stringify(await Vault.seal(txt)):txt);
+    }catch(e){}
+  }
+  async function decode(j){
+    if(!j||!j.enc)return j;
+    const k=await Vault.keyFor(j.salt);if(!k)throw new Error('pw');
+    let txt;try{txt=await Vault.open(j,k);}catch(e){throw new Error('pw');}
+    if(k!==Vault.key){Vault.key=k;Vault.salt=j.salt;saveLocal();saveCfg();}
+    return JSON.parse(txt);
+  }
+  async function rawRead(id){
+    const g=await api('/gists/'+id);const f=g.files&&g.files[FILE];if(!f)return null;
     const txt=f.truncated?await fetch(f.raw_url,{cache:'no-store'}).then(r=>r.text()):f.content;
     return JSON.parse(txt);
   }
+  const read=async()=>decode(await rawRead(cfg.id));
   async function write(){
-    await api('/gists/'+cfg.id,{method:'PATCH',body:JSON.stringify({files:{[FILE]:{content:JSON.stringify(state)}}})});
+    if(!Vault.key){status('Passwort nötig');return;}
+    const env=await Vault.seal(JSON.stringify(state));
+    await api('/gists/'+cfg.id,{method:'PATCH',body:JSON.stringify({files:{[FILE]:{content:JSON.stringify(env)}}})});
     last=new Date();ui();
+  }
+  async function askReauth(){
+    if(reauth||document.hidden||locked||Date.now()<reauthSkip)return;reauth=true;
+    const pw=await askPw({title:'Passwort der Cloud-Daten',text:'Die Cloud-Daten lassen sich mit dem aktuellen Passwort nicht öffnen. Vermutlich wurde es auf einem anderen Gerät geändert. Gib das neue Passwort ein.'});
+    reauth=false;
+    if(!pw){reauthSkip=Date.now()+10*60000;return;}
+    Vault.pw=pw;pull();
   }
   function fail(e){
     if(e&&e.message==='auth'){status('Schlüssel ungültig');toast('Sync: Schlüssel ungültig, bitte neu verbinden');}
+    else if(e&&e.message==='pw'){status('Passwort passt nicht');askReauth();}
     else status('Offline – wird nachgeholt');
   }
   async function pull(){
-    if(!cfg||busy)return;busy=true;
+    if(!cfg||busy||locked)return;busy=true;
     try{
+      if(!Vault.key){ui();busy=false;return;}
       const remote=await read();
       if(remote&&(remote.updatedAt||0)>(state.updatedAt||0)){
-        state=norm(remote);saveLocal();last=new Date();ui();
+        const k=state.settings.aiKey;
+        state=norm(remote);if(!state.settings.aiKey)state.settings.aiKey=k;
+        saveLocal();last=new Date();ui();
         if(!focus&&!document.querySelector('dialog[open]'))render();
       }else if(!remote||(state.updatedAt||0)>(remote.updatedAt||0)){await write();}
       else{last=new Date();ui();}
@@ -967,10 +1361,11 @@ const Sync=(()=>{
     busy=false;
   }
   function push(){
-    if(!cfg)return;clearTimeout(t);
+    if(!cfg||locked)return;clearTimeout(t);
     t=setTimeout(async()=>{
       if(busy){push();return;}busy=true;
       try{
+        if(!Vault.key){ui();busy=false;return;}
         // nicht blind überschreiben: ist das andere Gerät neuer, zuerst dessen Stand holen
         const remote=await read();
         if(remote&&(remote.updatedAt||0)>(state.updatedAt||0)){state=norm(remote);saveLocal();render();}
@@ -982,23 +1377,198 @@ const Sync=(()=>{
   async function connect(token){
     cfg={token};
     try{
+      if(!HAS_CRYPTO)throw new Error('nocrypto');
       const list=await api('/gists?per_page=100');
       const g=list.find(x=>x.files&&x.files[FILE]&&x.description===DESC);
-      if(g)cfg.id=g.id;
-      else{const n=await api('/gists',{method:'POST',body:JSON.stringify({description:DESC,public:false,files:{[FILE]:{content:JSON.stringify(state)}}})});cfg.id=n.id;}
-      localStorage.setItem(KEY,JSON.stringify(cfg));ui();await pull();toast('Verbunden');
-    }catch(e){cfg=null;ui();toast(e&&e.message==='auth'?'Schlüssel ungültig':'Verbinden fehlgeschlagen');}
+      if(g){
+        cfg.id=g.id;
+        const raw=await rawRead(g.id);
+        if(raw&&raw.enc){
+          let ok=false;
+          if(Vault.key){try{await decode(raw);ok=true;}catch(e){}}
+          while(!ok){
+            const pw=await askPw({title:'Passwort eingeben',text:'Deine Daten in der Cloud sind verschlüsselt. Gib das Passwort ein, das du beim Einrichten gewählt hast.'});
+            if(!pw)throw new Error('cancel');
+            try{const k=await Vault.derive(pw,raw.salt);await Vault.open(raw,k);Vault.pw=pw;Vault.key=k;Vault.salt=raw.salt;ok=true;}
+            catch(e){toast('Falsches Passwort');}
+          }
+        }else if(!Vault.key&&!(await ensurePassword()))throw new Error('cancel');
+      }else{
+        if(!Vault.key&&!(await ensurePassword()))throw new Error('cancel');
+        const n=await api('/gists',{method:'POST',body:JSON.stringify({description:DESC,public:false,files:{[FILE]:{content:JSON.stringify(await Vault.seal(JSON.stringify(state)))}}})});
+        cfg.id=n.id;
+      }
+      await saveCfg();saveLocal();ui();await pull();toast('Verbunden');
+    }catch(e){
+      cfg=null;ui();
+      toast(e&&e.message==='auth'?'Schlüssel ungültig':e&&e.message==='cancel'?'Abgebrochen':e&&e.message==='nocrypto'?'Verschlüsselung braucht eine https-Adresse':'Verbinden fehlgeschlagen');
+    }
   }
-  function disconnect(){cfg=null;try{localStorage.removeItem(KEY);}catch(e){}ui();toast('Getrennt. Daten bleiben auf diesem Gerät.');}
-  return{pull,push,connect,disconnect,ui,token:()=>cfg&&cfg.token};
+  function disconnect(){cfg=null;saveCfg();ui();toast('Getrennt. Daten bleiben auf diesem Gerät.');}
+  return{init,pull,push,connect,disconnect,ui,saveCfg,token:()=>cfg&&cfg.token,linked:()=>!!cfg};
 })();
 $('sy-connect').addEventListener('click',()=>{const v=$('sy-token').value.trim();if(!v){toast('Schlüssel einfügen');return;}$('sy-token').value='';Sync.connect(v);});
 $('sy-now').addEventListener('click',()=>Sync.pull().then(()=>toast('Synchronisiert')));
 $('sy-off-btn').addEventListener('click',()=>Sync.disconnect());
-$('sy-copy').addEventListener('click',()=>{const k=Sync.token();if(!k)return;(navigator.clipboard?navigator.clipboard.writeText(k):Promise.reject()).then(()=>toast('Schlüssel kopiert')).catch(()=>toast('Kopieren nicht möglich'));});
+const copy=(txt,ok)=>(navigator.clipboard?navigator.clipboard.writeText(txt):Promise.reject()).then(()=>toast(ok)).catch(()=>toast('Kopieren nicht möglich'));
+$('sy-copy').addEventListener('click',()=>{const k=Sync.token();if(k)copy(k,'Schlüssel kopiert');});
+$('sy-link').addEventListener('click',()=>{const k=Sync.token();if(k)copy(location.origin+location.pathname+'#sync='+k,'Link kopiert. Auf dem neuen Gerät öffnen.');});
 
-render();
-Sync.ui();Sync.pull();
+// ---------- KI-Coach (Claude) ----------
+const AI_SYS=`Du bist der persönliche Lern- und Zeitcoach in der App „Fokusplan“. Die Person macht die HF-Pflege-Ausbildung und arbeitet nebenbei am „Lernplan Feld“ (Englisch, Feld-Kurs, Anatomie, Kür), dazu kommen Schule, Arbeit und Freunde.
+Stil: Du-Form, Schweizer Rechtschreibung (ss statt ß), kurz, warm, ehrlich. Keine langen Vorträge, keine Floskeln. Höchstens ein bis zwei Rückfragen auf einmal.
+Regeln:
+- Du siehst unten den aktuellen Stand der App. Erfinde keine Termine, IDs oder Zahlen.
+- Änderungen führst du nur mit den Werkzeugen aus, und nur wenn die Person es will oder ausdrücklich zustimmt. Nutze die IDs aus dem Stand.
+- Wenn jemand etwas nicht geschafft hat: frag nach dem Grund (ohne Vorwurf), dann Vorschlag: nachholen, verschieben (mit neuer Zeit) oder ehrlich als „nicht gemacht“ eintragen. Ein Grund ist bei Verschieben und „nicht gemacht“ immer Pflicht.
+- Erkenne Muster in den Gründen (z. B. immer abends nach Schichten) und schlage konkrete, kleine Anpassungen vor.
+- Bei Zeitmangel gilt die Priorität: Englisch → Feld-Kurs → Anatomie → Kür. Lieber konstant wenig als selten viel.
+- Medizinische oder fachliche Auskünfte nur als Lernhilfe, nicht als Beratung.`;
+const AI_TOOLS=[
+ {name:'add_event',description:'Trägt einen Termin in den Kalender ein (blockiert die Zeit für Lernblöcke).',input_schema:{type:'object',properties:{title:{type:'string'},date:{type:'string',description:'YYYY-MM-DD'},from:{type:'string',description:'HH:MM, bei ganztägig weglassen'},to:{type:'string',description:'HH:MM, bei ganztägig weglassen'},kind:{type:'string',enum:['work','friends','school','other']},all_day:{type:'boolean'},prep_minutes:{type:'integer',description:'Nur bei Schule: 60 (Skills) oder 120 (Vorbereitung vor Schritt 7); sonst 0'}},required:['title','date','kind']}},
+ {name:'delete_event',description:'Löscht einen Termin (Event-ID aus dem Stand).',input_schema:{type:'object',properties:{event_id:{type:'string'}},required:['event_id']}},
+ {name:'mark_done',description:'Markiert einen Lernblock als erledigt bzw. nachgeholt (Block-ID).',input_schema:{type:'object',properties:{block_id:{type:'string'}},required:['block_id']}},
+ {name:'postpone_block',description:'Verschiebt einen Lernblock auf eine neue Zeit in der Zukunft. Der Grund ist Pflicht.',input_schema:{type:'object',properties:{block_id:{type:'string'},new_start:{type:'string',description:'Lokale Zeit YYYY-MM-DDTHH:MM'},reason:{type:'string'}},required:['block_id','new_start','reason']}},
+ {name:'skip_block',description:'Trägt einen VERPASSTEN Lernblock als „nicht gemacht“ ein. Der Grund ist Pflicht. Die Zeit wird nicht gutgeschrieben.',input_schema:{type:'object',properties:{block_id:{type:'string'},reason:{type:'string'}},required:['block_id','reason']}}
+];
+let aiBusy=false;
+function md(s){
+  return esc(s).split('\n').map(l=>{
+    const b=l.match(/^\s*[-•*] (.+)$/);const x=(b?b[1]:l).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+    return b?'<div class="li">• '+x+'</div>':(x.trim()?'<div>'+x+'</div>':'<div class="gap"></div>');
+  }).join('');
+}
+const CHIPS=[['Plan für heute','Was steht heute an? Sag mir kurz, in welcher Reihenfolge ich es angehen soll.'],['Verpasstes klären','Ich habe einiges nicht geschafft. Geh mit mir durch, was offen ist, und hilf mir, es nachzuholen, zu verschieben oder ehrlich als nicht gemacht einzutragen.'],['Wochenrückblick','Mach einen ehrlichen Wochenrückblick: Was lief gut, wo hänge ich fest, was zeigen meine Gründe fürs Verschieben und Nicht-Machen, und was ändere ich nächste Woche?']];
+function renderCoach(){
+  const has=!!state.settings.aiKey;
+  $('ai-setup').hidden=has;$('ai-chat').hidden=!has;
+  if(!has)return;
+  $('ai-chips').innerHTML=CHIPS.map((c,i)=>'<button type="button" class="chip" data-chip="'+i+'">'+c[0]+'</button>').join('');
+  const m=state.chat.map(x=>x.r==='action'?'<div class="note">✓ '+esc(x.t)+'</div>':'<div class="bub '+(x.r==='user'?'u':'a')+'">'+md(x.t)+'</div>').join('');
+  $('ai-msgs').innerHTML=(m||'<p class="empty">Frag mich etwas, oder tippe unten auf einen Vorschlag.</p>')+(aiBusy?'<div class="bub a typing">Coach denkt nach …</div>':'');
+  $('ai-send').disabled=aiBusy;
+}
+function aiContext(){
+  const now=new Date(),dm=dayMap(),L=[];
+  const row=x=>{
+    if(!x.study)return '['+x.id+'] '+(x.allDay?'ganztägig':hm(x.s)+'–'+hm(x.e))+' '+x.title+' (Termin: '+KIND[x.kind]+')';
+    const st=x.gone==='moved'?'verschoben':x.gone==='skipped'?'nicht gemacht':x.missed?'VERPASST':x.done?'erledigt':x.current?'läuft jetzt':'geplant';
+    return '['+x.id+'] '+hm(x.s)+'–'+hm(x.e)+' '+x.title+' ('+labOf(x)+', '+st+(x.reason?', Grund: '+x.reason:'')+')';
+  };
+  L.push('Jetzt: '+WDL[now.getDay()]+', '+iso(now)+' '+hm(now));
+  L.push('Planer: Lernfenster Mo–Fr 08:00–21:00, Sa/So 09:30–20:00, max. 3.5 h Lernen pro Tag. Wochenziel: Englisch 2 h, Feld-Kurs 2 h, Anatomie 1.5 h, Kür 1 h (nur bei Zeit).');
+  const wk=iso(monday(now));
+  TRACKS.forEach(tr=>{const st=trackStep(tr.id);L.push(tr.name+': '+(st.finished?'alle Schritte fertig':'Schritt '+(st.i+1)+'/'+tr.steps.length+' «'+st.s.t+'»')+'; diese Woche erledigt '+(state.trackDone[wk+'|'+tr.id]||0)+' von '+tr.quota+' min');});
+  const miss=missedOpen();
+  L.push('\nVERPASST UND NOCH OFFEN ('+miss.length+'):');miss.forEach(m=>L.push('['+m.id+'] '+shortDT(new Date(m.s))+' '+m.title));
+  for(let i=0;i<8;i++){
+    const d=new Date(now);d.setDate(d.getDate()+i);const k=iso(d);
+    const its=calItems(k,dm).filter(x=>!(x.missed));
+    L.push('\n'+(i===0?'HEUTE':dayLabel(d).toUpperCase())+' ('+k+'):');
+    if(!its.length)L.push('(frei)');its.forEach(x=>L.push(row(x)));
+  }
+  const tasks=P.tasks.filter(t=>t.dueD>now);
+  if(tasks.length){L.push('\nSCHULE-VORBEREITUNG OFFEN:');tasks.forEach(t=>L.push(t.title+' bis '+shortDT(t.dueD)+': noch '+Math.max(0,t.min-(state.progress[t.id]||0))+' min'));}
+  const lg=state.log.slice(-15);
+  L.push('\nLETZTE VERSCHIEBUNGEN UND NICHT GEMACHT (Gründe):');
+  if(!lg.length)L.push('(noch keine)');lg.forEach(l=>L.push(iso(new Date(l.at))+' '+(l.type==='skip'?'nicht gemacht':'verschoben')+' «'+l.title+'»: '+(l.reason||'–')));
+  return L.join('\n');
+}
+async function runTool(name,a){
+  const bad=m=>({ok:false,msg:m});
+  try{
+    if(name==='add_event'){
+      const r=addEvent({title:a.title,date:a.date,from:a.from,to:a.to,kind:a.kind,allDay:!!a.all_day,prep:a.prep_minutes});
+      return r.err?bad(r.err):{ok:true,msg:'Termin eingetragen: '+r.title+' · '+shortDT(at(r.date,r.from||'00:00')).replace(/ \d\d:\d\d$/,'')+(r.allDay?' ganztägig':' '+r.from+'–'+r.to)};
+    }
+    if(name==='delete_event'){const ev=delEvent(a.event_id);return ev?{ok:true,msg:'Termin gelöscht: '+ev.title}:bad('Termin nicht gefunden.');}
+    const b=findBlock(a.block_id);
+    if(!b)return bad('Block nicht gefunden. Nur IDs aus dem Stand verwenden.');
+    if(name==='mark_done'){if(b.done)return bad('Schon erledigt.');markDone(a.block_id);return{ok:true,msg:'Erledigt: '+b.title};}
+    const reason=(a.reason||'').trim();
+    if(!reason)return bad('Grund fehlt. Frag die Person nach dem Grund.');
+    if(name==='postpone_block'){
+      const sd=new Date(a.new_start);
+      if(isNaN(sd)||sd<new Date())return bad('Die neue Zeit muss gültig sein und in der Zukunft liegen.');
+      applyPostpone(b,sd,reason);return{ok:true,msg:'Verschoben auf '+shortDT(sd)+': '+b.title};
+    }
+    if(name==='skip_block'){
+      if(!b.missed)return bad('Nur verpasste Blöcke können als „nicht gemacht“ eingetragen werden. Sonst verschieben.');
+      skipBlock(b,reason);return{ok:true,msg:'Nicht gemacht: '+b.title};
+    }
+    return bad('Unbekanntes Werkzeug.');
+  }catch(e){return bad('Fehler: '+e.message);}
+}
+async function claude(messages){
+  const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'content-type':'application/json','x-api-key':state.settings.aiKey,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},
+    body:JSON.stringify({model:state.settings.aiModel||DEF_MODEL,max_tokens:1500,system:AI_SYS+'\n\n=== STAND DER APP ===\n'+aiContext(),tools:AI_TOOLS,messages})});
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok){const e=new Error((j.error&&j.error.message)||('Fehler '+r.status));e.status=r.status;throw e;}
+  return j;
+}
+async function aiSend(text){
+  if(aiBusy||!text.trim())return;
+  state.chat.push({r:'user',t:text.trim(),at:Date.now()});aiBusy=true;
+  if(state.chat.length>60)state.chat=state.chat.slice(-60);
+  save();renderCoach();window.scrollTo({top:document.body.scrollHeight});
+  let msgs=state.chat.filter(m=>m.r!=='action').slice(-20).map(m=>({role:m.r==='user'?'user':'assistant',content:m.t}));
+  while(msgs.length&&msgs[0].role!=='user')msgs.shift();
+  try{
+    for(let n=0;n<6;n++){
+      const res=await claude(msgs);
+      const txt=res.content.filter(b=>b.type==='text').map(b=>b.text).join('\n').trim();
+      const uses=res.content.filter(b=>b.type==='tool_use');
+      if(txt)state.chat.push({r:'assistant',t:txt,at:Date.now()});
+      if(!uses.length)break;
+      msgs.push({role:'assistant',content:res.content});
+      const results=[];
+      for(const u of uses){
+        const o=await runTool(u.name,u.input||{});
+        results.push({type:'tool_result',tool_use_id:u.id,content:o.msg,is_error:!o.ok});
+        if(o.ok)state.chat.push({r:'action',t:o.msg,at:Date.now()});
+      }
+      msgs.push({role:'user',content:results});
+    }
+  }catch(e){
+    state.chat.push({r:'assistant',t:e.status===401?'Der API-Schlüssel wird nicht akzeptiert. Prüfe ihn unter „Mehr“.':e.status===429?'Zu viele Anfragen oder Limit erreicht. Versuch es gleich nochmal.':'Das hat nicht geklappt: '+e.message,at:Date.now()});
+  }
+  aiBusy=false;save();renderCoach();window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+}
+$('ai-form').addEventListener('submit',e=>{e.preventDefault();const v=$('ai-in').value;$('ai-in').value='';aiSend(v);});
+$('ai-chips').addEventListener('click',e=>{const c=e.target.closest('[data-chip]');if(c)aiSend(CHIPS[+c.dataset.chip][1]);});
+$('ai-save').addEventListener('click',async()=>{
+  const k=$('ai-key').value.trim();
+  if(!/^sk-ant-/.test(k)){toast('Der Schlüssel beginnt mit sk-ant-');return;}
+  if(!(await ensurePassword()))return;
+  const old=state.settings.aiKey;state.settings.aiKey=k;
+  $('ai-save').disabled=true;
+  try{
+    const r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'content-type':'application/json','x-api-key':k,'anthropic-version':'2023-06-01','anthropic-dangerous-direct-browser-access':'true'},body:JSON.stringify({model:state.settings.aiModel||DEF_MODEL,max_tokens:8,messages:[{role:'user',content:'Hi'}]})});
+    if(r.status===401){state.settings.aiKey=old;toast('Schlüssel ungültig');}
+    else if(!r.ok){state.settings.aiKey=old;toast('Verbinden fehlgeschlagen ('+r.status+')');}
+    else{$('ai-key').value='';save();render();toast('KI verbunden');}
+  }catch(e){state.settings.aiKey=old;toast('Keine Verbindung');}
+  $('ai-save').disabled=false;
+});
+$('ai-model').addEventListener('change',e=>{state.settings.aiModel=e.target.value;save();toast('Modell gespeichert');});
+$('ai-clear').addEventListener('click',()=>{state.chat=[];save();render();toast('Chat geleert');});
+$('ai-remove').addEventListener('click',()=>{if(!confirm('API-Schlüssel auf allen Geräten entfernen?'))return;state.settings.aiKey='';save();render();toast('Schlüssel entfernt');});
+
+// ---------- Start ----------
+let pendingToken=null;
+{const m=location.hash.match(/sync=([\w-]+)/);if(m){pendingToken=m[1];try{history.replaceState(null,'',location.pathname+location.search);}catch(e){}}}
+async function start(){
+  await Sync.init();
+  render();Sync.ui();
+  if(pendingToken){showView('mehr');$('sy-token').value=pendingToken;pendingToken=null;if(!Sync.linked())toast('Schlüssel eingefügt. Tippe auf Verbinden.');}
+  await Sync.pull();
+  if(!Vault.key&&HAS_CRYPTO&&!document.querySelector('dialog[open]')){
+    let asked=false;try{asked=localStorage.getItem('fokusplan-pwask')==='1'||Sync.linked();localStorage.setItem('fokusplan-pwask','1');}catch(e){}
+    if(!asked||Sync.linked())ensurePassword();
+  }
+  setTimeout(()=>{if(!locked&&view==='heute')openReview();},600);
+}
+if(locked)showLock();else start();
 
 // ---------- Offline (Service Worker) ----------
 if('serviceWorker' in navigator&&location.protocol!=='file:'){navigator.serviceWorker.register('sw.js').catch(()=>{});}
